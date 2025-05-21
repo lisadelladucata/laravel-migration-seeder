@@ -1,29 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <title>Treni in Partenza</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabellone Treni</title>
+
+    @vite(['resources/js/app.js', 'resources/sass/app.scss'])
 </head>
 <body>
-    <h1>Treni in partenza</h1>
 
-    @foreach ($trains as $train)
-        <div style="margin-bottom: 20px;">
-            <strong>{{ $train->agency }}</strong><br>
-            Codice: {{ $train->train_code }}<br>
-            Da: {{ $train->departure_station }} a {{ $train->arrival_station }}<br>
-            Partenza: {{ \Carbon\Carbon::parse($train->departure_time)->format('d/m/Y H:i') }}<br>
-            Arrivo: {{ \Carbon\Carbon::parse($train->arrival_time)->format('d/m/Y H:i') }}<br>
-            Carrozze: {{ $train->total_carriages }}<br>
-            Stato: 
-            @if($train->deleted)
-                <span style="color: red;">Cancellato</span>
-            @elseif(!$train->on_time)
-                <span style="color: orange;">In Ritardo</span>
-            @else
-                <span style="color: green;">In Orario</span>
-            @endif
-        </div>
-    @endforeach
+    <h1>Tabellone Partenze</h1>
+
+    <table class="tabellone">
+        <thead>
+            <tr>
+                <th>Azienda</th>
+                <th>Partenza</th>
+                <th>Arrivo</th>
+                <th>Codice</th>
+                <th>Carrozze</th>
+                <th>Stato</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($trains as $train)
+                <tr>
+                    <td>{{ $train->agency }}</td>
+                    <td>{{ $train->departure_station }}<br>{{ $train->departure_time }}</td>
+                    <td>{{ $train->arrival_station }}<br>{{ $train->arrival_time }}</td>
+                    <td>{{ $train->train_code }}</td>
+                    <td>{{ $train->total_carriages }}</td>
+                    <td>
+                        @if ($train->deleted)
+                            <span class="cancellato">Cancellato</span>
+                        @elseif (!$train->on_time)
+                            <span class="ritardo">In ritardo</span>
+                        @else
+                            <span class="in-orario">In orario</span>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 </body>
 </html>

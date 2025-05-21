@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Share Tech Mono', monospace;
+    padding: 2rem;
+}
+
+.tabellone {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+
+    th, td {
+        padding: 10px 15px;
+        text-align: left;
+        border-bottom: 1px solid #0f0;
+    }
+
+    th {
+        text-transform: uppercase;
+        color: #ff0;
+    }
+
+    .ritardo {
+        color: orange;
+    }
+
+    .cancellato {
+        color: red;
+        text-decoration: line-through;
+    }
+
+    .in-orario {
+        color: #0f0;
+    }
+}
